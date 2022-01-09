@@ -12,7 +12,7 @@ console.log("test : "+process.env);
     next();
 }*/
 app.use((req,res,next) => {
-    console.log(`${req.method} ${req.path} ${req.ip}`);
+    console.log(`${req.method} ${req.path} - ${req.ip}`);
     next();
 });
 app.use('/public',express.static(path.join(__dirname,"/public")));
