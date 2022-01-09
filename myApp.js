@@ -7,11 +7,15 @@ console.log("test : "+process.env);
 /*app.listen(process.env.PORT || 3000, function() {
     console.log("Server listening");
 })*/
+var logger = function(req,res,next){
+    console.log(`${req.method} ${req.path} ${req.ip}`);
+    next();
+}
 app.use('/public',express.static(path.join(__dirname,"/public")));
-app.get('/',(req,res) =>{
+app.get('/',logger,(req,res) =>{
     res.sendFile(__dirname+"/views/index.html");
 })
-app.get('/json', (req,res)=> {
+app.get('/json', logger, (req,res)=> {
     if(process.env.MESSAGE_STYLE === 'uppercase'){
         res.json({"message":"Hello json".toUpperCase()});
     }
