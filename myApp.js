@@ -7,11 +7,14 @@ console.log("test : "+process.env);
 /*app.listen(process.env.PORT || 3000, function() {
     console.log("Server listening");
 })*/
-var logger = function(req,res,next){
+/*var logger = function(req,res,next){
     console.log(`${req.method} ${req.path} ${req.ip}`);
     next();
-}
-app.use(logger);
+}*/
+app.use((req,res,next) => {
+    console.log(`${req.method} ${req.path} ${req.ip}`);
+    next();
+});
 app.use('/public',express.static(path.join(__dirname,"/public")));
 app.get('/',(req,res) =>{
     res.sendFile(__dirname+"/views/index.html");
