@@ -6,7 +6,7 @@ console.log("test");
     console.log("Server listening");
 })*/
 app.get('/',(req,res) =>{
-    res.send("Hello Express");
+    res.sendFile(__dirname+"/views/index.html");
 })
 
 
