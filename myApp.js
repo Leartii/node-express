@@ -6,7 +6,7 @@ app.listen(process.env.PORT || 3000, function() {
     console.log("Server listening");
 })
 app.get('/',(req,res) =>{
-    res.send("Response String");
+    res.send("Hello Express");
 })
 
 
