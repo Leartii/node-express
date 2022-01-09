@@ -11,11 +11,12 @@ var logger = function(req,res,next){
     console.log(`${req.method} ${req.path} ${req.ip}`);
     next();
 }
+app.use(logger);
 app.use('/public',express.static(path.join(__dirname,"/public")));
-app.get('/',logger,(req,res) =>{
+app.get('/',(req,res) =>{
     res.sendFile(__dirname+"/views/index.html");
 })
-app.get('/json', logger, (req,res)=> {
+app.get('/json', (req,res)=> {
     if(process.env.MESSAGE_STYLE === 'uppercase'){
         res.json({"message":"Hello json".toUpperCase()});
     }
