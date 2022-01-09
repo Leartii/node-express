@@ -16,7 +16,7 @@ app.get('/json', (req,res)=> {
         res.json({"message":"Hello json".toUpperCase()});
     }
     else{
-        res.json({"message":"Hello json".toLowerCase()});
+        res.json({"message":"Hello json"});
     }
 })
 
