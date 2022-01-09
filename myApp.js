@@ -1,5 +1,6 @@
 var express = require('express');
 var path = require("path");
+const { emitWarning } = require('process');
 require('dotenv').config();
 var app = express();
 console.log("process.env : "+process.env.MESSAGE_STYLE);
@@ -26,6 +27,12 @@ app.get('/json', (req,res)=> {
     else{
         res.json({"message":"Hello json"});
     }
+})
+app.get('/now',(req,res,next)=>{
+    req.time = new Date().toString();
+    next();
+}, (req,res) => {
+    res.json({"time" : req.time})
 })
 
 
