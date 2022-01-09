@@ -2,6 +2,7 @@ var express = require('express');
 var path = require("path");
 const { emitWarning } = require('process');
 require('dotenv').config();
+const bodyParser = require('body-parser');
 var app = express();
 console.log("process.env : "+process.env.MESSAGE_STYLE);
 console.log("test : "+process.env);
@@ -39,7 +40,7 @@ app.get("/:word/echo", (req,res) => {
     const word = req.params.word;
     res.json({"echo" : word});
 })
-
+app.use(bodyParser.urlencoded({extended: false}));
 app.route("/name").get((req,res) => {
     res.json({"name": `${req.query.first} ${req.query.last}`})
 })
